@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -13,6 +13,7 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TodoComponent } from './todo/todo.component';
 import { ErrorComponent } from './error/error.component';
+import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { ErrorComponent } from './error/error.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

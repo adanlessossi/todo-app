@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from 'src/app/list-todos/list-todos.component';
+import { WelcomeDataService } from './welcome-data.service';
 
 @Injectable({
   providedIn: 'root'
