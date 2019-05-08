@@ -10,7 +10,7 @@ import { HardcodedAuthenticationService } from '../service/hardcoded-authenticat
 })
 export class LoginComponent implements OnInit {
 
-  username = 'username';
+  username = 'Bernard';
   password = '';
   errorMessage = 'Invalid credentials';
   invalidLogin = false;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;
     }else{
-    this.invalidLogin = true;
+      this.invalidLogin = true;
     }
   }
 }

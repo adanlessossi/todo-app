@@ -12,8 +12,9 @@ export class HardcodedAuthenticationService {
   constructor(private router:Router) { }
 
   authenticate(username, password){
+    console.log("Login with: " + username + " and Password: " + password);
     console.log("Before login" + this.isUserLoggedIn());
-    if (username ==='username' && password==='Passw0rd'){
+    if (username ==='Bernard' && password==='Passw0rd'){
       sessionStorage.setItem('authenticatedUser', username);
       console.log("After login" + this.isUserLoggedIn());
       return true;
@@ -23,6 +24,7 @@ export class HardcodedAuthenticationService {
 
   isUserLoggedIn(){
     let user = sessionStorage.getItem('authenticatedUser');
+    console.log("User is: " + user);
     return ! (user === null);
   }
 

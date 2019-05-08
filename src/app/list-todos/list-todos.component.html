@@ -1,4 +1,4 @@
-<h1> Todo </h1>>
+<h1> Todo </h1>
 
 <div class="alert alert-success" *ngIf="todoMessage">{{todoMessage}}</div>
 <div class="container">
@@ -19,8 +19,10 @@
         <td>{{todo.done}}</td>
         <td>
           <button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button>
-          <button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button>
         </td>
+        <td>
+            <button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button>
+          </td>
       </tr>
     </tbody>
   </table>
