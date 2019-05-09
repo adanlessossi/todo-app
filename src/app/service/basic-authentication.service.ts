@@ -23,6 +23,22 @@ export class BasicAuthenticationService {
 
   constructor(private router: Router, private httpClient: HttpClient) { }
 
+  executeJwtAuthentication(username, password) {    
+    return this.httpClient.post<any>(`${API_URL}/authenticate`, {
+      username,
+      password
+    }).pipe(
+      map(
+        data => {
+          console.log(data);
+          sessionStorage.setItem(AUTHENTICATED_USER, username);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
+  }
+
   isUserLoggedIn() {
     let user = sessionStorage.getItem(AUTHENTICATED_USER);
     return !(user === null);
