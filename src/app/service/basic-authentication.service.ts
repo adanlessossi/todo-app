@@ -30,7 +30,6 @@ export class BasicAuthenticationService {
     }).pipe(
       map(
         data => {
-          console.log(data);
           sessionStorage.setItem(AUTHENTICATED_USER, username);
           sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
           return data;
