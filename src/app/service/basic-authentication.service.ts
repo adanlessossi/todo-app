@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 export class AuthenticationBean {
 
-  constructor(public message: string){}
+  constructor(public message: string) { }
 }
 
 @Injectable({
@@ -35,15 +36,22 @@ export class BasicAuthenticationService {
     return !(user === null);
   }
 
-  executeBasicAuthentication(username, password){
+  executeBasicAuthentication(username, password) {
     let basicHeaderString = 'Basic ' + window.btoa(username + ':' + password);
 
-    let header = new HttpHeaders({
+    let headers = new HttpHeaders({
       Authorization: basicHeaderString
     })
-    return this.httpClient.get<AuthenticationBean>('http://localhost:8080/basicauth', {headers: header});
+    return this.httpClient.get<AuthenticationBean>('http://localhost:8080/basicauth', { headers }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem('authenticatedUser', username);
+          return data;
+        }
+      )
+    );
   }
-  
+
   logout() {
     sessionStorage.removeItem('authenticatedUser');
   }
